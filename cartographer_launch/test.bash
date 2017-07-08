@@ -1,0 +1,35 @@
+#!/bin/bash
+
+
+timeout 600 roslaunch sim_2d_replay_cartographer_001.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_002.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_003.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_004.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_005.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_006.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_007.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_008.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_009.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_010.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_011.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_012.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_013.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_014.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_015.launch
+
+timeout 600 roslaunch sim_2d_replay_cartographer_001.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_002.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_003.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_004.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_005.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_006.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_007.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_008.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_009.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_010.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_011.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_012.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_013.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_014.launch
+timeout 600 roslaunch sim_2d_replay_cartographer_015.launch
+

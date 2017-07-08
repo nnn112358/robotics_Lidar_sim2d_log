@@ -1,0 +1,50 @@
+<launch>
+
+  <param name="/use_sim_time" value="true" />
+  
+   <node pkg="n_robot_sim" type="n_robot_sim_node" name="n_robot_sim">
+    <remap from="cmd_vel" to="cmd_vel"/>
+    <remap from="scan"    to="scan"/>
+
+    <param name="LRF_data_num" value="1024.0" />
+    <param name="LRF_deg" value="360.0" />
+    <param name="LRF_len_max" value="10.0" />
+    <param name="LRF_len_min" value="0.20" />
+    <param name="LRF_leng_stdev" value="0.01" />
+
+    <param name="odom_noise_liner" value="0.01" />
+    <param name="odom_noise_liner_stdev" value="0.01" />
+    <param name="odom_noise_angle" value="0.02" />
+    <param name="odom_noise_angle_stdev" value="0.01" />
+
+    <param name="sim_fps" value="30.0" />
+    <param name="map_fname" value="$(find n_robot_sim)/config/obstacle.csv" />
+    <param name="move_obst_num" value="10" />
+
+   </node>
+
+    <node pkg="n_robot_sim_moveobst" type="n_robot_sim_moveobst_node" name="n_robot_sim_moveobst_node">
+        <param name="speed_gain"  value="1.0" />
+        <param name="turn_gain"  value="0.54" />
+    </node>
+    
+   <node pkg="rosbag" type="play" name="player" output="screen" args="--clock /home/iqit/catkin_me/src/test_launch/input_cmd_vel.bag"/>
+
+  <node name="cartographer" pkg="cartographer_ros"
+      type="cartographer_node" args="
+          -configuration_directory $(find n_robot_sim)/configuration_files
+          -configuration_basename toyota_hsr.lua"
+      output="screen">
+    <remap from="scan" to="scan" />
+  </node>
+
+   <node pkg="check_tf_result" type="check_tf_result_node" name="check_tf_result_node">
+           <param name="fname"  value="/home/iqit/catkin_me/src/test_launch/testNo014" />
+                      <param name="fname_total"  value="/home/iqit/catkin_me/src/test_launch/test" />
+                      <param name="end_time"  value="3010" />
+   </node>
+
+
+
+</launch>
+

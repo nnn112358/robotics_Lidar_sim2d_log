@@ -1,0 +1,77 @@
+<launch>
+
+  <param name="/use_sim_time" value="true" />
+  
+   <node pkg="n_robot_sim" type="n_robot_sim_node" name="n_robot_sim">
+    <remap from="cmd_vel" to="cmd_vel"/>
+    <remap from="scan"    to="scan"/>
+
+    <param name="LRF_data_num" value="1024.0" />
+    <param name="LRF_deg" value="240.0" />
+    <param name="LRF_len_max" value="10.0" />
+    <param name="LRF_len_min" value="0.20" />
+    <param name="LRF_leng_stdev" value="0.01" />
+
+    <param name="odom_noise_liner" value="0.01" />
+    <param name="odom_noise_liner_stdev" value="0.01" />
+    <param name="odom_noise_angle" value="0.02" />
+    <param name="odom_noise_angle_stdev" value="0.01" />
+
+    <param name="sim_fps" value="30.0" />
+    <param name="map_fname" value="$(find n_robot_sim)/config/obstacle.csv" />
+    <param name="move_obst_num" value="10" />
+
+   </node>
+
+    <node pkg="n_robot_sim_moveobst" type="n_robot_sim_moveobst_node" name="n_robot_sim_moveobst_node">
+        <param name="speed_gain"  value="2.0" />
+        <param name="turn_gain"  value="1.14" />
+    </node>
+    
+   <node pkg="rosbag" type="play" name="player" output="screen" args="--clock /home/iqit/catkin_me/src/test_launch/input_cmd_vel.bag"/>
+
+  <node pkg="gmapping" type="slam_gmapping" name="kobuki_slam_gmapping" output="screen">
+    <remap from="scan" to="scan"/>
+    <param name="base_frame" value="base_link"/>
+    <param name="odom_frame" value="odom"/>
+    <param name="map_update_interval" value="1.0"/>
+    <param name="maxUrange" value="15.0"/>
+    <param name="sigma" value="0.5"/>
+    <param name="kernelSize" value="1"/>
+    <param name="lstep" value="0.05"/>
+    <param name="astep" value="0.05"/>
+    <param name="iterations" value="5"/>
+    <param name="lsigma" value="0.75"/>
+    <param name="ogain" value="3.0"/>
+    <param name="lskip" value="1"/>
+    <param name="srr" value="0.1"/>
+    <param name="srt" value="0.2"/>
+    <param name="str" value="0.1"/>
+    <param name="stt" value="0.2"/>
+    <param name="linearUpdate" value="0.25"/>
+    <param name="angularUpdate" value="0.25"/>
+    <param name="temporalUpdate" value="-1.0"/>
+    <param name="resampleThreshold" value="0.5"/>
+    <param name="particles" value="500"/>
+    <param name="xmin" value="-30.0"/>
+    <param name="ymin" value="-30.0"/>
+    <param name="xmax" value="30.0"/>
+    <param name="ymax" value="30.0"/>
+    <param name="delta" value="0.05"/>
+    <param name="llsamplerange" value="0.2"/>
+    <param name="llsamplestep" value="0.2"/>
+    <param name="lasamplerange" value="0.15"/>
+    <param name="lasamplestep" value="0.15"/>
+    </node>
+
+
+   <node pkg="check_tf_result" type="check_tf_result_node" name="check_tf_result_node">
+           <param name="fname"  value="/home/iqit/catkin_me/src/test_launch2/testNo001" />
+           <param name="fname_total"  value="/home/iqit/catkin_me/src/test_launch2/test" />
+           <param name="end_time"  value="3010" />
+   </node>
+   
+
+
+</launch>
+
